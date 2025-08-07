@@ -1,0 +1,10 @@
+{
+  "enabledMcpjsonServers": [
+    "context7",
+    "serena",
+    "github",
+    "filesystem",
+    "sequential-thinking",
+    "memory"
+  ]
+}
