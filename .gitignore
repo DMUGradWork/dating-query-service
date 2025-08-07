@@ -35,3 +35,37 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Environment specific configs ###
+.env
+.env.local
+.env.*.local
+application-local.yml
+application-local.properties
+application-secret.yml
+application-secret.properties
+
+### Logs ###
+logs/
+*.log
+log-*.txt
+
+### Temporary files ###
+*.tmp
+*.temp
+.tmp/
+
+### JVM Crash logs ###
+hs_err_pid*
+
+### macOS ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+### Docker override files ###
+docker-compose.override.yml
