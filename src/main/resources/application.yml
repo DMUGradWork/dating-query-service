@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: dating-query-service
+  
+  # MongoDB Configuration
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: dating_query_db
+  
+  # Kafka Configuration
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: dating-query-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+
+# Logging
+logging:
+  level:
+    com.grewmeet.dating.datingqueryservice: INFO
+    org.springframework.kafka: DEBUG
