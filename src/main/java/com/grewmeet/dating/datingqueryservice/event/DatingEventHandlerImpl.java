@@ -1,16 +1,23 @@
 package com.grewmeet.dating.datingqueryservice.event;
 
 import com.grewmeet.dating.datingqueryservice.domain.DatingEvent;
+import com.grewmeet.dating.datingqueryservice.domain.EventParticipant;
 import com.grewmeet.dating.datingqueryservice.domain.EventStatus;
+import com.grewmeet.dating.datingqueryservice.domain.ParticipantStatus;
 import com.grewmeet.dating.datingqueryservice.repository.DatingEventRepository;
+import com.grewmeet.dating.datingqueryservice.repository.EventParticipantRepository;
 import com.grewmeet.dating.datingqueryservice.saga.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * 데이팅 이벤트 처리 구현체
- * EventHandler 인터페이스를 구현하여 Kafka에서 수신한 이벤트를 처리하고
+ * DatingEventHandler 인터페이스를 구현하여 Kafka에서 수신한 이벤트를 처리하고
  * Read Model을 업데이트합니다.
  */
 @Slf4j
@@ -19,6 +26,7 @@ import org.springframework.stereotype.Service;
 public class DatingEventHandlerImpl implements DatingEventHandler {
     
     private final DatingEventRepository datingEventRepository;
+    private final EventParticipantRepository eventParticipantRepository;
     
     @Override
     public void handleMeetingCreated(DatingMeetingCreated event) {
